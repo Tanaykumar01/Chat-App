@@ -19,10 +19,12 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 // import routes
-import userRouter from "./routes/auth.routes.js";
+import authRouter from "./routes/auth.routes.js";
 import messageRouter from "./routes/message.routes.js";
+import userRouter from "./routes/user.routes.js";
 // use routes
-app.use("/api/v1/auth", userRouter);
+app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/message", messageRouter);
+app.use("/api/v1/users", userRouter);
 
 export { app };
