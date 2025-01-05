@@ -20,9 +20,6 @@ app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.use(cookieParser());
 
-app.get("*" , (req,res) => {
-    res.sendFile(path.join(__dirname, "/frontend" , "dist" , "index.html"));
-})
 
 // import routes
 import authRouter from "./routes/auth.routes.js";
@@ -32,5 +29,9 @@ import userRouter from "./routes/user.routes.js";
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/users", userRouter);
+
+app.get("*" , (req,res) => {
+    res.sendFile(path.join(__dirname, "frontend" , "dist" , "index.html"));
+})
 
 export { app };
