@@ -1,8 +1,8 @@
 import User from "../models/user.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 
-export const getUserForSideBar = asyncHandler(async (req, res) => {
+export const getUserForSideBar = AsyncHandler(async (req, res) => {
     try {
         const loggedInUser = req.user._id;
         const users = await User.find({ _id: { $ne: loggedInUser } }).select("-password -refreshToken");

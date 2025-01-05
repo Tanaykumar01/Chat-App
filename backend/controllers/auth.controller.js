@@ -1,8 +1,8 @@
 import User from "../models/user.model.js";
 import {ApiError} from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
-const signup = asyncHandler(async (req, res) => {
+import { AsyncHandler } from "../utils/AsyncHandler.js";
+const signup = AsyncHandler(async (req, res) => {
     try {
         const { name, username, password, confirmPassword, gender } = req.body;
         if (password !== confirmPassword) {
@@ -45,7 +45,7 @@ const signup = asyncHandler(async (req, res) => {
     }
 });
 
-const login = asyncHandler (async (req, res) => {
+const login = AsyncHandler (async (req, res) => {
     try {
         const { username , password } = req.body;
         const user = await User.findOne({ username });
@@ -86,7 +86,7 @@ const login = asyncHandler (async (req, res) => {
 
 })
 
-const logout = asyncHandler( async (req, res) => {
+const logout = AsyncHandler( async (req, res) => {
     try {
         const user = req.user;
         user.refreshToken = "";

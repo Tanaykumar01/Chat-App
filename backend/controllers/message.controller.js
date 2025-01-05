@@ -2,9 +2,9 @@ import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
 import { getReceiverSocketId, io } from "../socket/socket.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 
-export const sendMessage = asyncHandler (async (req, res, next) => {
+export const sendMessage = AsyncHandler (async (req, res, next) => {
     try {
         const { message } = req.body;
         const { id : receiverId } = req.params;
@@ -49,7 +49,7 @@ export const sendMessage = asyncHandler (async (req, res, next) => {
     }
 });
 
-export const getMessages = asyncHandler(async (req, res, next) => {
+export const getMessages = AsyncHandler(async (req, res, next) => {
     try {
         const { id: receiverId } = req.params;
         const senderId = req.user._id;
