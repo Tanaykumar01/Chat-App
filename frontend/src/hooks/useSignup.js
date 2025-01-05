@@ -19,8 +19,8 @@ const useSignup = () => {
 			});
 
 			const data = await res.json();
-			if (data.error) {
-				throw new Error(data.error);
+			if (data.statusCode === 500) {
+				throw new Error(data.message);
 			}
 			console.log(data);
 			localStorage.setItem("chat-user", JSON.stringify(data));

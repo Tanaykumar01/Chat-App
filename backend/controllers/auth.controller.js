@@ -40,7 +40,7 @@ const signup = asyncHandler(async (req, res) => {
     } catch (error) {
         console.log("Error in signup route :- ", error.message);
         res.status(500).json(
-            new ApiResponse(500, null, "An error occurred while registering user")
+            new ApiResponse(500, null, error.message)
         );
     }
 });
@@ -65,6 +65,7 @@ const login = asyncHandler (async (req, res) => {
             httpOnly : true,
             secure : true
         }
+        console.log("User logged in successfully");
         res.status(200)
         .cookie("accessToken" , accessToken , options)
         .cookie("refreshToken" , refreshToken , options)
@@ -78,7 +79,7 @@ const login = asyncHandler (async (req, res) => {
     } catch (error) {
         console.log("Error in login route :- ", error.message);
         res.status(500).json(
-            new ApiResponse(500 , null , "An error occurred while login")
+            new ApiResponse(500 , null , error.message)
         )
     }
 
