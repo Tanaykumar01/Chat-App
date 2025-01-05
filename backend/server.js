@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
@@ -8,13 +9,20 @@ import { app } from "./socket/socket.js";
 //     credentials: true,
 // }));
 
+const __dirname = path.resolve();
+
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({
     extended: true,
     limit: "50mb",
 }));
 app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.use(cookieParser());
+
+app.get("*" , (req,res) => {
+    res.sendFile(path.join(__dirname, "/frontend" , "dist" , "index.html"));
+})
 
 // import routes
 import authRouter from "./routes/auth.routes.js";
