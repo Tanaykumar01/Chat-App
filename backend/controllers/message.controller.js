@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/AsyncHandler.js";
 
@@ -30,6 +31,12 @@ export const sendMessage = asyncHandler (async (req, res, next) => {
         }
 
         await Promise.all([newMessage.save(), conversation.save()]);
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+		if (receiverSocketId) {
+			// io.to(<socket_id>).emit() used to send events to specific client
+			io.to(receiverSocketId).emit("newMessage", newMessage);
+		}
 
         res.status(201).json(
             new ApiResponse(201, newMessage, "Message sent successfully")

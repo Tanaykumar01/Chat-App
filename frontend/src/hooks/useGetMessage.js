@@ -10,12 +10,7 @@ const useGetMessages = () => {
 		const getMessages = async () => {
 			setLoading(true);
 			try {
-				const res = await fetch(`/api/v1/message/${selectedConversation._id}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
+				const res = await fetch(`/api/v1/message/${selectedConversation._id}`);
 				const data = await res.json();
 				if (data.statusCode === 500) throw new Error(data.message);
 				setMessages(data.data);
