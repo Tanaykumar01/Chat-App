@@ -16,7 +16,7 @@ app.use(express.urlencoded({
     extended: true,
     limit: "50mb",
 }));
-app.use(express.static("public"));
+// app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "/frontend/dist")));
 app.use(cookieParser());
 
