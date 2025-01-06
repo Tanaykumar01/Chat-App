@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import {ApiError} from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { AsyncHandler } from "../utils/AsyncHandler.js";
+import AsyncHandler from "../utils/AsyncHandler.js";
 const signup = AsyncHandler(async (req, res) => {
     try {
         const { name, username, password, confirmPassword, gender } = req.body;
