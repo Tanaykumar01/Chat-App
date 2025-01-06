@@ -22,7 +22,6 @@ const useSignup = () => {
 			if (data.statusCode === 500) {
 				throw new Error(data.message);
 			}
-			console.log(data);
 			localStorage.setItem("chat-user", JSON.stringify(data));
 			setAuthUser(data);
 		} catch (error) {

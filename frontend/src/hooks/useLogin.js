@@ -18,7 +18,6 @@ const useLogin = () => {
 			});
 
 			const data = await res.json();
-            console.log(data);
 			if (data.statusCode === 500) {
 				throw new Error(data.message);
 			}
