@@ -6,10 +6,10 @@ import { extractTime } from "../../utils/extractTime";
 const Message = ({ message }) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
-  const isMine = message.senderId === authUser.data.user._id;
+  const isMine = message.senderId === authUser?.data?.user?._id;
   const chatClassName = isMine ? "chat-end" : "chat-start";
   const profilePic = isMine
-    ? authUser.data.user.profilePic
+    ? authUser?.data?.user?.profilePic
     : selectedConversation?.profilePic;
   const bubbleBgColor = isMine ? "bg-blue-500" : "";
   const shouldShake = message.shouldShake ? "shake" : "";
